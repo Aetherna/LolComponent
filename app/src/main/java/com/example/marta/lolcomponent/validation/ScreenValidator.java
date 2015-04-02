@@ -36,18 +36,20 @@ public class ScreenValidator implements IComponent.IValidationListener {
         screenState.setValue(requesterComponent.getFieldType(),
                 requesterComponent.getComponentValue());
 
-        ComponentValidationResult result = null;
-
         for (IComponent component : validationChain.keySet()) {
-            result = validationChain.get(component).validate(screenState);
-            if (ComponentValidationResult.PASSED != result || component.equals(requesterComponent)) {
+            ValidationResultType result = validationChain.get(component).validate(screenState);
+            if(ValidationResultType.PASSED != result){
+                validationResultListener.handleComponentValidationFailed(result);
+                break;
+            } else if(component.equals(requesterComponent)){
+                validationResultListener.handleComponentValidationSuccessful(requesterComponent);
                 break;
             }
         }
-        validationResultListener.handleComponentValidationResult(new ValidationResult(result, requesterComponent));
     }
 
     public interface ValidationResultListener {
-        void handleComponentValidationResult(ValidationResult validationResult);
+        void handleComponentValidationSuccessful(IComponent component);
+        void handleComponentValidationFailed(ValidationResultType result);
     }
 }

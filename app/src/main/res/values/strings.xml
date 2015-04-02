@@ -1,11 +1,9 @@
 <resources>
-    <string name="app_name">LolComponent</string>
-
-    <string name="hello_world">Hello world!</string>
+    <string name="app_name">Component Prototype</string>
     <string name="action_settings">Settings</string>
-    <string name="sample_component_validation_error">Validation error on component 1: expected
+    <string name="blue_component_validation_error">Validation error on blue component: expected
         "expected1"</string>
     <string name="validation_success">success</string>
-    <string name="sample_component_2_validation_error">Validation error on component 2: expected
+    <string name="pink_component_validation_error">Validation error on pink component: expected
         "expected2"</string>
 </resources>

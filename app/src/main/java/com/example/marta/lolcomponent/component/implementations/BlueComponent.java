@@ -15,7 +15,7 @@ import com.example.marta.lolcomponent.validation.IValidator;
 /**
  * Created by Marta on 02/04/2015.
  */
-public class SampleComponent implements IComponent {
+public class BlueComponent implements IComponent {
 
     private int resourceId = R.layout.sample_component;
     private String componentValue = "test 1";
@@ -25,7 +25,7 @@ public class SampleComponent implements IComponent {
     private IValidationListener listener;
     private FieldType fieldType;
 
-    public SampleComponent(Context context, FieldType fieldType, IValidator validator) {
+    public BlueComponent(Context context, FieldType fieldType, IValidator validator) {
         this.validator = validator;
         this.fieldType = fieldType;
 
@@ -40,7 +40,7 @@ public class SampleComponent implements IComponent {
             @Override
             public void onClick(View v) {
                 componentValue = editText.getText().toString();
-                listener.startValidation(SampleComponent.this);
+                listener.startValidation(BlueComponent.this);
             }
         });
     }

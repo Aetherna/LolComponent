@@ -9,9 +9,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.marta.lolcomponent.component.IComponent;
-import com.example.marta.lolcomponent.validation.ComponentValidationResult;
+import com.example.marta.lolcomponent.validation.ValidationResultType;
 import com.example.marta.lolcomponent.validation.ScreenValidator;
-import com.example.marta.lolcomponent.validation.ValidationResult;
 
 
 public class MainActivity extends ActionBarActivity implements ScreenValidator.ValidationResultListener {
@@ -64,12 +63,14 @@ public class MainActivity extends ActionBarActivity implements ScreenValidator.V
     }
 
     @Override
-    public void handleComponentValidationResult(final ValidationResult validationResult) {
-        if (validationResult.getResult() == ComponentValidationResult.PASSED) {
-            validationResult.getComponent().fillTransaction(transaction);
-        } else {
-            Toast.makeText(this, validationResult.getErrorMessageResourceId(), Toast.LENGTH_SHORT).show();
-        }
+    public void handleComponentValidationSuccessful(IComponent component) {
+        component.fillTransaction(transaction);
+        transactionInfo.setText(transaction.toString());
+    }
+
+    @Override
+    public void handleComponentValidationFailed(ValidationResultType result) {
+        Toast.makeText(this, result.getErrorMessage(), Toast.LENGTH_SHORT).show();
         transactionInfo.setText(transaction.toString());
     }
 }

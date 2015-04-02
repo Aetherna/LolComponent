@@ -7,6 +7,6 @@ import com.example.marta.lolcomponent.ScreenState;
  */
 public interface IValidator {
 
-    ComponentValidationResult validate(ScreenState screenState);
+    ValidationResultType validate(ScreenState screenState);
 
 }
