@@ -17,6 +17,7 @@ public class MainActivity extends ActionBarActivity implements ScreenValidator.V
 
     private ScreenValidator screenValidator;
     private Transaction transaction;
+    private ScreenComponentDescriptor componentDescriptor;
 
 
     @Override
@@ -25,9 +26,8 @@ public class MainActivity extends ActionBarActivity implements ScreenValidator.V
         setContentView(R.layout.activity_main);
         final LinearLayout container = (LinearLayout) findViewById(R.id.main_container);
 
-        ScreenComponentDescriptor componentDescriptor = new ScreenComponentDescriptor(this);
-        screenValidator = new ScreenValidator(this);
-        screenValidator.setComponentsToValidate(componentDescriptor.getScreenComponents());
+        componentDescriptor = new ScreenComponentDescriptor(this);
+        screenValidator = new ScreenValidator(this, componentDescriptor.getScreenComponents());
 
         for (IComponent component : componentDescriptor.getScreenComponents()) {
             container.addView(component.getInflatedView());

@@ -1,4 +1,4 @@
-package com.example.marta.lolcomponent.component;
+package com.example.marta.lolcomponent.validation.implementations;
 
 import android.text.TextUtils;
 
@@ -14,7 +14,7 @@ public class SampleComponentValidator implements IValidator {
 
     @Override
     public ComponentValidationResult validate(final ScreenState screenState) {
-        String fromLocationBarcode = screenState.getValue(FieldType.FROM_DUPA);
+        String fromLocationBarcode = screenState.getValue(FieldType.SAMPLE_FIELD_1);
 
         if (!TextUtils.isEmpty(fromLocationBarcode)) {
             return ComponentValidationResult.PASSED;

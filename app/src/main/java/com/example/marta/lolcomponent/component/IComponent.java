@@ -10,7 +10,6 @@ import com.example.marta.lolcomponent.validation.IValidator;
  * Created by Marta on 02/04/2015.
  */
 public interface IComponent {
-    int getResourceId();
 
     IValidator getValidator();
 

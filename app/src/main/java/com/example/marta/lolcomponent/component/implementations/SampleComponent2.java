@@ -1,32 +1,31 @@
-package com.example.marta.lolcomponent.component;
+package com.example.marta.lolcomponent.component.implementations;
 
 import android.content.Context;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.example.marta.lolcomponent.FieldType;
 import com.example.marta.lolcomponent.R;
 import com.example.marta.lolcomponent.Transaction;
+import com.example.marta.lolcomponent.component.IComponent;
 import com.example.marta.lolcomponent.validation.IValidator;
 
 /**
  * Created by Marta on 02/04/2015.
  */
-public class SampleComponent implements IComponent {
+public class SampleComponent2 implements IComponent {
 
-    private int resourceId = R.layout.sample_component;
-    private String componentValue = "LOL HINT";
+    private int resourceId = R.layout.sample_component2;
+    private String componentValue = "test value 2";
 
     private View componentView = null;
     private IValidator validator = null;
     private IValidationListener listener;
     private FieldType fieldType;
 
-    public SampleComponent(Context context, FieldType fieldType, IValidator validator) {
+    public SampleComponent2(Context context, FieldType fieldType, IValidator validator) {
         this.validator = validator;
         this.fieldType = fieldType;
 
@@ -41,15 +40,9 @@ public class SampleComponent implements IComponent {
             @Override
             public void onClick(View v) {
                 componentValue = editText.getText().toString();
-                listener.startValidation(SampleComponent.this);
+                listener.startValidation(SampleComponent2.this);
             }
         });
-
-    }
-
-    @Override
-    public int getResourceId() {
-        return resourceId;
     }
 
     @Override
@@ -79,8 +72,8 @@ public class SampleComponent implements IComponent {
 
     @Override
     public void fillTransaction(final Transaction transaction) {
-        transaction.setValue1("SetValue 1");
-        transaction.setValue3("SetValue 3");
+        transaction.setValue1("SetValue 1 by " + this.getClass().getSimpleName());
+        transaction.setValue3("SetValue 3 by " + this.getClass().getSimpleName());
     }
 
 }

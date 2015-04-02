@@ -3,7 +3,7 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-    android:background="#aaccff">
+    android:background="##ffbbff">
     <EditText
         android:id="@+id/sample_edit"
         android:layout_width="wrap_content"

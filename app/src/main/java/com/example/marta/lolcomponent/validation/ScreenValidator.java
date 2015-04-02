@@ -16,13 +16,13 @@ public class ScreenValidator implements IComponent.IValidationListener {
     private ScreenState screenState;
     private ValidationResultListener validationResultListener;
 
-
-    public ScreenValidator(ValidationResultListener validationResultListener) {
+    public ScreenValidator(ValidationResultListener validationResultListener, List<IComponent> components) {
         screenState = new ScreenState();
         this.validationResultListener = validationResultListener;
+        createValidationChain(components);
     }
 
-    public void setComponentsToValidate(List<IComponent> components) {
+    private void createValidationChain(final List<IComponent> components) {
         validationChain = new LinkedHashMap<>();
         for (IComponent component : components) {
             component.setValidationListener(this);
@@ -37,6 +37,7 @@ public class ScreenValidator implements IComponent.IValidationListener {
                 requesterComponent.getComponentValue());
 
         ComponentValidationResult result = null;
+
         for (IComponent component : validationChain.keySet()) {
             result = validationChain.get(component).validate(screenState);
             if (ComponentValidationResult.PASSED != result || component.equals(requesterComponent)) {
