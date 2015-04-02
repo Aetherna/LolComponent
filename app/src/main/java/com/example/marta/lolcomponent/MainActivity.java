@@ -5,6 +5,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.marta.lolcomponent.component.IComponent;
@@ -18,6 +19,8 @@ public class MainActivity extends ActionBarActivity implements ScreenValidator.V
     private ScreenValidator screenValidator;
     private Transaction transaction;
     private ScreenComponentDescriptor componentDescriptor;
+
+    private TextView transactionInfo;
 
 
     @Override
@@ -33,6 +36,8 @@ public class MainActivity extends ActionBarActivity implements ScreenValidator.V
             container.addView(component.getInflatedView());
         }
         transaction = new Transaction();
+        transactionInfo = (TextView) findViewById(R.id.transactionValues);
+        transactionInfo.setText(transaction.toString());
     }
 
 
@@ -65,5 +70,6 @@ public class MainActivity extends ActionBarActivity implements ScreenValidator.V
         } else {
             Toast.makeText(this, validationResult.getErrorMessageResourceId(), Toast.LENGTH_SHORT).show();
         }
+        transactionInfo.setText(transaction.toString());
     }
 }

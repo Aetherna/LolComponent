@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.example.marta.lolcomponent.component.IComponent;
 import com.example.marta.lolcomponent.component.implementations.SampleComponent;
+import com.example.marta.lolcomponent.validation.implementations.SampleComponent2Validator;
 import com.example.marta.lolcomponent.validation.implementations.SampleComponentValidator;
 import com.example.marta.lolcomponent.component.implementations.SampleComponent2;
 
@@ -24,7 +25,7 @@ public class ScreenComponentDescriptor {
         components.add(new SampleComponent(context, FieldType.SAMPLE_FIELD_1,
                 new SampleComponentValidator()));
         components.add(new SampleComponent2(context, FieldType.SAMPLE_FIELD_2,
-                new SampleComponentValidator()));
+                new SampleComponent2Validator()));
     }
 
     public List<IComponent> getScreenComponents() {

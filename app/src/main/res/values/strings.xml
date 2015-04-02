@@ -3,6 +3,9 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="sample_component_validation_error">Validation error on sample component</string>
+    <string name="sample_component_validation_error">Validation error on component 1: expected
+        "expected1"</string>
     <string name="validation_success">success</string>
+    <string name="sample_component_2_validation_error">Validation error on component 2: expected
+        "expected2"</string>
 </resources>

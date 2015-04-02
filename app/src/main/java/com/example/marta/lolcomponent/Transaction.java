@@ -29,11 +29,11 @@ public class Transaction {
 
     @Override
     public String toString() {
-        return "Transaction{" +
-                "value1='" + value1 + '\'' +
-                ", value2='" + value2 + '\'' +
-                ", value3='" + value3 + '\'' +
-                ", value4='" + value4 + '\'' +
+        return "Transaction{" + "\n" +
+                "value1='" + value1 + '\'' + "\n" +
+                ", value2='" + value2 + '\'' + "\n" +
+                ", value3='" + value3 + '\'' + "\n" +
+                ", value4='" + value4 + '\'' + "\n" +
                 '}';
     }
 }

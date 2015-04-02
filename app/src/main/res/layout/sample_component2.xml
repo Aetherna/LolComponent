@@ -3,10 +3,10 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-    android:background="##ffbbff">
+    android:background="#ffbbff">
     <EditText
         android:id="@+id/sample_edit"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <Button
         android:id="@+id/sample_button"

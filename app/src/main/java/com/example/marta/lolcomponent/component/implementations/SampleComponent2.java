@@ -72,8 +72,8 @@ public class SampleComponent2 implements IComponent {
 
     @Override
     public void fillTransaction(final Transaction transaction) {
-        transaction.setValue1("SetValue 1 by " + this.getClass().getSimpleName());
-        transaction.setValue3("SetValue 3 by " + this.getClass().getSimpleName());
+        transaction.setValue2("SetValue 2 by " + this.getClass().getSimpleName());
+        transaction.setValue4("SetValue 4 by " + this.getClass().getSimpleName());
     }
 
 }

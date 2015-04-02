@@ -8,7 +8,8 @@ import com.example.marta.lolcomponent.R;
 public enum ComponentValidationResult {
 
     PASSED(R.string.validation_success),
-    INVALID_FROM_LOCATION(R.string.sample_component_validation_error);
+    INVALID_SAMPLE_FIELD_1(R.string.sample_component_validation_error),
+    INVALID_SAMPLE_FIELD_2(R.string.sample_component_2_validation_error);
 
     ComponentValidationResult(final int errorMessage) {
         this.errorMessage = errorMessage;
