@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.example.marta.lolcomponent.component.IComponent;
@@ -30,7 +31,7 @@ public class MainActivity extends ActionBarActivity {
 
         LinearLayout container = (LinearLayout) findViewById(R.id.main_container);
 
-        for(IComponent component: components){
+        for(final IComponent component: components){
             View view = getLayoutInflater().inflate(component.getResourceId(),null);
             container.addView(view);
         }
