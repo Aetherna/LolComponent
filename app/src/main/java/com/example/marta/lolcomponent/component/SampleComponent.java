@@ -6,7 +6,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.marta.lolcomponent.FieldType;
+import com.example.marta.lolcomponent.IValidator;
 import com.example.marta.lolcomponent.R;
+import com.example.marta.lolcomponent.Transaction;
 
 /**
  * Created by Marta on 02/04/2015.
@@ -17,9 +20,13 @@ public class SampleComponent implements IComponent {
     private String displayedValue = "LOL HINT";
     private View componentView = null;
     private IValidator validator = null;
+    private IValidationListener listener;
+    private FieldType fieldType;
 
-    public SampleComponent(Context context, int resourceId) {
-        this.resourceId = resourceId;
+    public SampleComponent(Context context, FieldType fieldType, IValidator validator) {
+        this.validator = validator;
+        this.fieldType = fieldType;
+
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         componentView = inflater.inflate(resourceId, null);
 
@@ -30,9 +37,10 @@ public class SampleComponent implements IComponent {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                listener.startValidation(SampleComponent.this);
             }
         });
+
     }
 
     @Override
@@ -40,19 +48,36 @@ public class SampleComponent implements IComponent {
         return resourceId;
     }
 
+    @Override
+    public String getDisplayedValue() {
+        return displayedValue;
+    }
 
-//    public boolean validate(IValidatorVisitor validator) {
-//
-//        return (validator.getSampleValueToValidate() != null);
-//
-//    }
+    @Override
+    public void setValidationListener(final IValidationListener listener) {
+        this.listener = listener;
+    }
 
+    @Override
+    public FieldType getFieldType() {
+        return fieldType;
+    }
+
+    @Override
+    public View getInflatedView() {
+        return componentView;
+    }
+
+    @Override
     public IValidator getValidator() {
         return validator;
     }
-//
-//    public void xxx(Transaction transaction){
-//        transaction.set
-//    }
+
+    @Override
+    public void fillTransaction(final Transaction transaction) {
+        transaction.setValue1("SetValue 1");
+        transaction.setValue3("SetValue 3");
+    }
+
 
 }
