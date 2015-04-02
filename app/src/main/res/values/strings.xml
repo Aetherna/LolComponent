@@ -3,4 +3,6 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="sample_component_validation_error">Validation error on sample component</string>
+    <string name="validation_success">success</string>
 </resources>

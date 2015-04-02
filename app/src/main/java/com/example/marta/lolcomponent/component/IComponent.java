@@ -3,8 +3,7 @@ package com.example.marta.lolcomponent.component;
 import android.view.View;
 
 import com.example.marta.lolcomponent.FieldType;
-import com.example.marta.lolcomponent.IValidator;
-import com.example.marta.lolcomponent.MainActivity;
+import com.example.marta.lolcomponent.validation.IValidator;
 import com.example.marta.lolcomponent.Transaction;
 
 /**
@@ -17,13 +16,15 @@ public interface IComponent {
 
     void fillTransaction(Transaction transaction);
 
-    String getDisplayedValue();
+    String getComponentValue();
 
     void setValidationListener(IValidationListener listener);
 
     FieldType getFieldType();
 
     View getInflatedView();
+
+    int getValidationErrorResourceId();
 
     public interface IValidationListener {
     void startValidation(IComponent requesterComponent);

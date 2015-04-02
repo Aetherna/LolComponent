@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.marta.lolcomponent.FieldType;
-import com.example.marta.lolcomponent.IValidator;
+import com.example.marta.lolcomponent.validation.IValidator;
 import com.example.marta.lolcomponent.R;
 import com.example.marta.lolcomponent.Transaction;
 
@@ -17,7 +17,10 @@ import com.example.marta.lolcomponent.Transaction;
 public class SampleComponent implements IComponent {
 
     private int resourceId = R.layout.sample_component;
-    private String displayedValue = "LOL HINT";
+    private int validationErrorResourceId = R.string.sample_component_validation_error;
+
+    private String componentValue = "LOL HINT";
+
     private View componentView = null;
     private IValidator validator = null;
     private IValidationListener listener;
@@ -31,7 +34,7 @@ public class SampleComponent implements IComponent {
         componentView = inflater.inflate(resourceId, null);
 
         EditText editText = (EditText) componentView.findViewById(R.id.sample_edit);
-        editText.setText(displayedValue);
+        editText.setText(componentValue);
 
         Button button = (Button) componentView.findViewById(R.id.sample_button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -49,8 +52,8 @@ public class SampleComponent implements IComponent {
     }
 
     @Override
-    public String getDisplayedValue() {
-        return displayedValue;
+    public String getComponentValue() {
+        return componentValue;
     }
 
     @Override
@@ -79,5 +82,7 @@ public class SampleComponent implements IComponent {
         transaction.setValue3("SetValue 3");
     }
 
-
+    public int getValidationErrorResourceId() {
+        return validationErrorResourceId;
+    }
 }

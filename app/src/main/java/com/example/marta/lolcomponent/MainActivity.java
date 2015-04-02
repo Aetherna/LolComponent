@@ -8,70 +8,30 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.marta.lolcomponent.component.IComponent;
-import com.example.marta.lolcomponent.component.SampleComponent;
-import com.example.marta.lolcomponent.component.SampleComponentValidator;
-
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import com.example.marta.lolcomponent.validation.ScreenValidator;
+import com.example.marta.lolcomponent.validation.ValidationResult;
 
 
-public class MainActivity extends ActionBarActivity implements IComponent.IValidationListener {
+public class MainActivity extends ActionBarActivity implements ScreenValidator.ValidationResultListener {
 
-    List<IComponent> components;
-
-    private Map<IComponent, IValidator> validationChain;
-    private IValidationVisitor validationVisitor;
+    private ScreenValidator screenValidator;
     private Transaction transaction;
 
-    @Override
-    public void startValidation(IComponent requesterComponent) {
-
-        validationVisitor.setValue(requesterComponent.getFieldType(),
-                requesterComponent.getDisplayedValue());
-
-        for (IComponent component : validationChain.keySet()) {
-            if (validationChain.get(component).validate(validationVisitor)) {
-                if (component.equals(requesterComponent)) {
-                    requesterComponent.fillTransaction(transaction);
-                    break;
-                }
-            } else {
-                Toast.makeText(this, "Failed validation on " + requesterComponent
-                                .getDisplayedValue(),
-                        Toast.LENGTH_SHORT).show();
-                break;
-            }
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        components = new ArrayList<>();
-        components.add(new SampleComponent(this, FieldType.FROM_DUPA,
-                new SampleComponentValidator()));
-        components.add(new SampleComponent(this, FieldType.DUPA,
-                new SampleComponentValidator()));
-        components.add(new SampleComponent(this, FieldType.QUANTITY, new SampleComponentValidator
-                ()));
+        final LinearLayout container = (LinearLayout) findViewById(R.id.main_container);
 
-        validationChain = new LinkedHashMap<>();
-        for (IComponent component : components) {
-            component.setValidationListener(this);
-            validationChain.put(component, component.getValidator());
-        }
+        ScreenComponentDescriptor componentDescriptor = new ScreenComponentDescriptor(this);
+        screenValidator = new ScreenValidator(this);
+        screenValidator.setComponentsToValidate(componentDescriptor.getScreenComponents());
 
-        LinearLayout container = (LinearLayout) findViewById(R.id.main_container);
-
-        for (IComponent component : components) {
+        for (IComponent component : componentDescriptor.getScreenComponents()) {
             container.addView(component.getInflatedView());
         }
-
         transaction = new Transaction();
-        validationVisitor = new SampleValidationVisitor();
     }
 
 
@@ -95,5 +55,14 @@ public class MainActivity extends ActionBarActivity implements IComponent.IValid
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void handleComponentValidationResult(final ValidationResult validationResult) {
+        if (validationResult.isResult()) {
+            validationResult.getComponent().fillTransaction(transaction);
+        } else {
+            Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show();
+        }
     }
 }

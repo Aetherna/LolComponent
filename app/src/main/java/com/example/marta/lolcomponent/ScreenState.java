@@ -1,15 +1,17 @@
 package com.example.marta.lolcomponent;
 
+import com.example.marta.lolcomponent.validation.IValidationVisitor;
+
 import java.util.HashMap;
 
 /**
  * Created by Marta on 02/04/2015.
  */
-public class SampleValidationVisitor implements IValidationVisitor {
+public class ScreenState implements IValidationVisitor {
 
     private final HashMap<FieldType, String> fieldValues;
 
-    public SampleValidationVisitor() {
+    public ScreenState() {
         fieldValues = new HashMap<>();
     }
 

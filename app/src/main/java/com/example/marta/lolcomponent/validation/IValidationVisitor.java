@@ -1,4 +1,6 @@
-package com.example.marta.lolcomponent;
+package com.example.marta.lolcomponent.validation;
+
+import com.example.marta.lolcomponent.FieldType;
 
 import java.util.HashMap;
 import java.util.Map;
