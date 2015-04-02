@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.marta.lolcomponent.component.IComponent;
+import com.example.marta.lolcomponent.validation.ComponentValidationResult;
 import com.example.marta.lolcomponent.validation.ScreenValidator;
 import com.example.marta.lolcomponent.validation.ValidationResult;
 
@@ -59,10 +60,10 @@ public class MainActivity extends ActionBarActivity implements ScreenValidator.V
 
     @Override
     public void handleComponentValidationResult(final ValidationResult validationResult) {
-        if (validationResult.isResult()) {
+        if (validationResult.getResult() == ComponentValidationResult.PASSED) {
             validationResult.getComponent().fillTransaction(transaction);
         } else {
-            Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, validationResult.getErrorMessageResourceId(), Toast.LENGTH_SHORT).show();
         }
     }
 }

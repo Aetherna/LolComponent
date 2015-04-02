@@ -13,7 +13,7 @@ import java.util.Map;
 public class ScreenValidator implements IComponent.IValidationListener {
 
     private Map<IComponent, IValidator> validationChain;
-    private IValidationVisitor screenState;
+    private ScreenState screenState;
     private ValidationResultListener validationResultListener;
 
 
@@ -36,18 +36,14 @@ public class ScreenValidator implements IComponent.IValidationListener {
         screenState.setValue(requesterComponent.getFieldType(),
                 requesterComponent.getComponentValue());
 
+        ComponentValidationResult result = null;
         for (IComponent component : validationChain.keySet()) {
-
-            if (validationChain.get(component).validate(screenState)) {
-                if (component.equals(requesterComponent)) {
-                    validationResultListener.handleComponentValidationResult(new ValidationResult(true, requesterComponent));
-                    break;
-                }
-            } else {
-                validationResultListener.handleComponentValidationResult(new ValidationResult(false, requesterComponent));
+            result = validationChain.get(component).validate(screenState);
+            if (ComponentValidationResult.PASSED != result || component.equals(requesterComponent)) {
                 break;
             }
         }
+        validationResultListener.handleComponentValidationResult(new ValidationResult(result, requesterComponent));
     }
 
     public interface ValidationResultListener {

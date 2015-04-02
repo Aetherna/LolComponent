@@ -1,10 +1,12 @@
 package com.example.marta.lolcomponent.validation;
 
+import com.example.marta.lolcomponent.ScreenState;
+
 /**
  * Created by Marta on 02/04/2015.
  */
 public interface IValidator {
 
-    ComponentValidationResult validate(IValidationVisitor validationVisitor);
+    ComponentValidationResult validate(ScreenState screenState);
 
 }

@@ -6,20 +6,20 @@ import com.example.marta.lolcomponent.component.IComponent;
  * Created by Marta on 02/04/2015.
  */
 public class ValidationResult {
-    private boolean result;
+    private ComponentValidationResult result;
     private IComponent component;
 
-    public ValidationResult(final boolean result, IComponent component) {
+    public ValidationResult(final ComponentValidationResult result, IComponent component) {
         this.result = result;
         this.component = component;
     }
 
-    public boolean isResult() {
+    public ComponentValidationResult getResult() {
         return result;
     }
 
     public int getErrorMessageResourceId() {
-        return component.getValidationErrorResourceId();
+        return result.getErrorMessage();
     }
 
     public IComponent getComponent() {
